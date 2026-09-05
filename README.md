@@ -38,6 +38,9 @@ Step 4: open mongo-express from browser
 
 Step 5: create `user-account` _db_ and `users` _collection_ in mongo-express
 
+<img width="1680" height="1050" alt="Screenshot 2026-09-05 at 13 23 54" src="https://github.com/user-attachments/assets/e5550e7b-9f02-49e6-8b77-df8a09319002" />
+
+
 Step 6: Start your nodejs application locally - go to `app` directory of project 
 
     cd app
