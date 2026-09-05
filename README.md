@@ -91,46 +91,54 @@ The dot "." at the end of the command denotes location of the Dockerfile.
 step 7: Deploy Docker application on a server with Docker Compose
 
 
-#### Copy Docker-compose file to remote server
+i. Copy Docker-compose file to remote server
 
-#### Login to private Docker registry on remote server to fetch our app image
+ii. Login to private Docker registry on remote server to fetch our app image
 
-#### Start our application container with MongoDB and MongoExpress services using docker compose
+iii. Start our application container with MongoDB and MongoExpress services using docker compose
 
-#### Steps to deploy the app using docker compose
 
-Step 1: Create an image of the application in the app folder and push it to the private registry:
+Step 1:
+
+Create an image of the application in the app folder and push it to the private registry:
 Because the URL to access the mongo-db from the application is different when running the application in the same Docker network as the mongo-db (use mongodb://admin:password@mongodb instead of mongodb://admin:password@localhost:27017 or mongodb://admin:password@host.docker.internal:27017) we have to build a new version of the image (containing the adjusted server.js file) and push it to the private registry.
 
-cd app
-docker build -t user-profile:1.0 .
+    cd app
+    
 
-# login to private registry
+Step 2: login to private registry
 aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 653455484040.dkr.ecr.us-east-1.amazonaws.com
 
 
-# build the image
-docker build -t my-app:1.0 .
 
-# tag the image
+Step 3:
+
+a. build the image
+
+    docker build -t my-app:1.0 .
+
+b. tag the image
 docker tag my-app:1.0 653455484040.dkr.ecr.us-east-1.amazonaws.com/my-app:1.1
 
-# and push it to the registry
+c. push it to the registry
 docker push 653455484040.dkr.ecr.us-east-1.amazonaws.com/my-app:1.1
 
+<img width="1680" height="1050" alt="image versions in ecr" src="https://github.com/user-attachments/assets/2aa4a2d5-5375-4fa6-baf0-73e6cc2ab3df" />
 
-Step 2: Copy the docker-compose.yaml file:
+
+Step 4: Copy the docker-compose.yaml file:
+
 Switch to a server / directory where you want to run the application and copy the docker-compose.yaml file into this directory.
 
-Step 3: Run the application
-# login to private registry
+Step 6: Run the application
+a. login to a private registry
 aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 653455484040.dkr.ecr.us-east-1.amazonaws.com
 
-# run docker-compose
+b. run docker-compose
 docker-compose up -d
 
 
 Test the application in the browser (http://localhost:3000, http://localhost:8081).
-Test the application in the browser (http://localhost:3000, http://localhost:8081).
 
-Test the application in the browser (http://localhost:3000, http://localhost:8081).
+
+<img width="1680" height="1050" alt="running app" src="https://github.com/user-attachments/assets/cef4daf7-bff6-4201-a267-6d350cd1d3c8" />
