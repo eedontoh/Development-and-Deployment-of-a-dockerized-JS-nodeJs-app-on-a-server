@@ -46,10 +46,14 @@ Step 6: Start your nodejs application locally - go to `app` directory of project
     cd app
     npm install 
     node server.js
-    
+
+<img width="434" height="60" alt="started node app" src="https://github.com/user-attachments/assets/4ce6b929-db58-4424-a26f-4763e9cfa8ce" />
+
+
 Step 7: Access you nodejs application UI from browser
 
     http://localhost:3000
+
 
 ### With Docker Compose
 
